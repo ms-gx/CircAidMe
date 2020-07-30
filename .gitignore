@@ -1,0 +1,9 @@
+# object files and shared library
+*.o
+
+# Byte-compile Python code
+__pycache__/
+
+# Packaging
+build/**
+*.egg-info/
