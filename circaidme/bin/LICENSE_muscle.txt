@@ -1,5 +1,3 @@
-From: https://www.drive5.com/muscle/manual/license.html
-
 MUSCLE is public domain software
 The MUSCLE software, including object and source code and documentation, is donated to the public domain. You may therefore freely copy it for any legal purpose you wish. Acknowledgement of authorship and citation in publications is appreciated.
 
