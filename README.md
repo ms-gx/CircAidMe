@@ -91,7 +91,7 @@ __Run CircAidMe multicore:__<br>
 
 # Known limitations
 * CircAidMe at this stage does not support Gzipped input or output (`*.fastq.gz`or `*.fasta.gz`). Might be addressed later if needed.
-* CircAidMe has multicore support (parameter `--threads`), however the speed does not scale perfectly linear. This can be improved at a later stage.
+* CircAidMe has multicore support (parameter `--threads`). However, the speed does not scale perfectly linear. Can be improved at a later stage.
 
 
 
