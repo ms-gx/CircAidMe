@@ -14,6 +14,7 @@ CircAidMe is free software and it is licensed under GPLv3.
     * [Install from source](#install-from-source)
     * [Build and run without installation](#build-and-run-without-installation)
 * [Usage examples](#Usage-examples)
+* [Known limitations](#Known-limitations)
 * [License](#license)
     
 
@@ -77,6 +78,11 @@ __Minimally parameterized run:__<br>
 
 __Re-run CircAidMe (overwriting results from previous run):__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite` 
+
+
+
+# Known limitations
+* CircAidMe at this stage does not support Gzipped input or output (`*.fastq.gz`or `*.fasta.gz`)
 
 
 
