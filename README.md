@@ -8,6 +8,7 @@
 * [Installation](#installation)
     * [Install from source](#install-from-source)
     * [Build and run without installation](#build-and-run-without-installation)
+* [License](#license)
     
 
 
@@ -60,3 +61,9 @@ make
 mkdir /home/user/testdir # make any new and empty test directory
 ./circaidme-test.py /home/user/testdir # all tests have to pass with "OK"
 ```
+
+
+
+# License
+
+[GNU General Public License, version 3](https://www.gnu.org/licenses/gpl-3.0.html)
