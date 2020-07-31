@@ -13,7 +13,7 @@ CircAidMe is free software and it is licensed under GPLv3.
 * [Installation](#installation)
     * [Install from source](#install-from-source)
     * [Build and run without installation](#build-and-run-without-installation)
-* [Quick usage examples](#quick-usage-examples)
+* [Usage examples](#Usage-examples)
 * [License](#license)
     
 
@@ -70,7 +70,7 @@ mkdir /home/user/testdir # make any new and empty test directory
 
 
 
-# Quick usage examples
+# Usage examples
 
 __Minimally parameterized run:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME`
