@@ -34,3 +34,15 @@ Notes:
 * Install to a specific location: `python3 setup.py install --prefix=$HOME/.local`
 * Install with pip (local copy): `pip3 install path/to/CircAidMe`
 * Install with pip (from GitHub): `pip3 install git+https://github.com/ms-gx/CircAidMe.git
+
+
+### Build and run without installation
+
+By simply running `make` in CircAidMe's directory, you can compile the C++ components but not install an executable. The program can then be executed by directly calling the `circaidme-runner.py` script.
+
+```bash
+git clone https://github.com/ms-gx/CircAidMe.git
+cd CircAidMe
+make
+./circaidme-runner.py -h
+```
