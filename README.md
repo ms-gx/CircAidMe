@@ -56,4 +56,7 @@ git clone https://github.com/ms-gx/CircAidMe.git
 cd CircAidMe
 make
 ./circaidme-runner.py -h
+# test the installation with a toy data set inlcuded in the package:
+mkdir /home/user/testdir # make any new and empty test directory
+./circaidme-test.py /home/user/testdir # all tests have to pass with "OK"
 ```
