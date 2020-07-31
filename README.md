@@ -1,6 +1,7 @@
 # CircAidMe
 
 CircAidMe is a tool designed to analyze data generated with [CircAID-p-seq for Oxford Nanopore Technologies](https://www.immaginabiotech.com/product/circaid-p-seq/). Briefly, it detects known adapter sequences which are used by CircAID-p-seq within every Oxford Nanopore read. After having detected the adapters it will extract the insert sequences form the Oxford Nanopore read and then calculate a consensus sequence for the insert.
+
 CircAidMe is free software and it is licensed under GPLv3.
 
 
