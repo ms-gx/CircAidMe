@@ -43,8 +43,8 @@ Notes:
 * If `python3 setup.py install` complains about permissions since you want to install it system-wide you have to run it with `sudo`.
 * Install just for your user: `python3 setup.py install --user`
 * Install to a specific location: `python3 setup.py install --prefix=$HOME/.local`
-* Install with pip (local copy): `pip3 install path/to/CircAidMe`
-* Install with pip (from GitHub): `pip3 install git+https://github.com/ms-gx/CircAidMe.git
+* Install with pip (local copy, you might have to install Python package `wheel`): `pip3 install path/to/CircAidMe`
+* Install with pip (from GitHub, you might have to install Python package `wheel`): `pip3 install git+https://github.com/ms-gx/CircAidMe.git
 
 
 ### Build and run without installation
