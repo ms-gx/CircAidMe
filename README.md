@@ -13,8 +13,9 @@ CircAidMe is free software and it is licensed under GPLv3.
 * [Installation](#installation)
     * [Install from source](#install-from-source)
     * [Build and run without installation](#build-and-run-without-installation)
-* [Usage examples](#Usage-examples)
-* [Known limitations](#Known-limitations)
+    * [Install via PyPI](#install-via-pypi)
+* [Usage examples](#usage-examples)
+* [Known limitations](#known-limitations)
 * [License](#license)
     
 
@@ -69,6 +70,10 @@ mkdir /home/user/testdir # make any new and empty test directory
 ./circaidme-test.py /home/user/testdir # all tests have to pass with "OK"
 ```
 
+
+### Install via PyPI
+
+Installation via PyPI repisitory will be added later.
 
 
 # Usage examples
