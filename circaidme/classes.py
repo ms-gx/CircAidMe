@@ -25,7 +25,6 @@ import subprocess
 import multiprocessing
 import pandas as pd
 import operator
-import regex
 from Bio.Seq import Seq
 from Bio.Seq import IUPAC
 from Bio import AlignIO
@@ -412,7 +411,6 @@ class Alignments:
                                                    parameter.adapter[adapter_name]["Seq"],
                                                    parameter.adapter[adapter_name]["ScoringScheme"],
                                                    parameter.adapter[adapter_name]["Threshold"]-10)).split("\n")
-			#if(regex.findall("(" + result_check + "){e<=3}", parameter.adapter[adapter_name]["Seq"])):
 			if(len(alignment_check_adapter[:-1]) > 0):
 				with lock:
 					Stat.inc_key("adapter_as_insert", stats)
