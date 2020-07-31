@@ -77,12 +77,16 @@ __Minimally parameterized run:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME`
 
 __Re-run CircAidMe (overwriting results from previous run):__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite` 
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite`
+
+__Run CircAidMe multicore:__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N` 
 
 
 
 # Known limitations
-* CircAidMe at this stage does not support Gzipped input or output (`*.fastq.gz`or `*.fasta.gz`)
+* CircAidMe at this stage does not support Gzipped input or output (`*.fastq.gz`or `*.fasta.gz`). Might be addressed later if needed.
+* CircAidMe has multicore support (parameter `--threads`), however the speed does not scale perfectly linear. This can be improved at a later stage.
 
 
 
