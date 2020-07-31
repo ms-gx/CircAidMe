@@ -1,5 +1,16 @@
 # CircAidMe
 
+
+
+# Table of contents
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+    * [Install from source](#install-from-source)
+    * [Build and run without installation](#build-and-run-without-installation)
+    
+
+
 # Requirements
 
 * Linux
