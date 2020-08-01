@@ -78,6 +78,19 @@ Installation via PyPI repisitory will be added later.
 
 
 
+# Usage examples
+
+__Minimally parameterized run:__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME`
+
+__Re-run CircAidMe (overwriting results from previous run):__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite`
+
+__Run CircAidMe multicore:__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N` 
+
+
+
 # Full usage
 
 ```
@@ -145,19 +158,6 @@ optional arguments:
   --threads THREADS     number of threads to be used (default: 1)
   --version             show program's version number and exit
 ```
-
-
-
-# Usage examples
-
-__Minimally parameterized run:__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME`
-
-__Re-run CircAidMe (overwriting results from previous run):__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite`
-
-__Run CircAidMe multicore:__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N` 
 
 
 
