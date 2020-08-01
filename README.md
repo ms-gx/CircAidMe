@@ -152,7 +152,7 @@ optional arguments:
   --cons-max-len CONS_MAX_LEN
                         define maximal length of the consensus sequence
                         (default: 40)
-  --keep-forward        define if reads with only "forward" inserts are to be
+  --keep-forward        set if reads with only "forward" inserts are to be
                         kept (default: False)
   --iter-first-muscle {1,2,3}
                         define how many iterations MUSCLE has to perform for
