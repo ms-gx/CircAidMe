@@ -94,8 +94,8 @@ __Add an additional tag to the result names by setting parameter `--tag` (for ex
 __Run CircAidMe multicore with parameter `--threads`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N`
 
-__CircAidMe does not exlcude "forward" inserts by setting parameter `--exclude-forward` to `False`:__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --exclude-forward False`
+__CircAidMe does not exlcude "forward" inserts by setting parameter `--keep-forward`:__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --keep-forward`
 
 
 
@@ -104,11 +104,10 @@ __CircAidMe does not exlcude "forward" inserts by setting parameter `--exclude-f
 ```
 usage: circaidme [-h] --input-file INPUT_FILE --out-path OUT_PATH
                  --adapter-name ADAPTER_NAME [--adapter-list ADAPTER_LIST]
-                 [--force-overwrite {False,True}] [--tag TAG]
-                 [--refine-adapter-alignment {False,True}]
+                 [--force-overwrite] [--tag TAG]
+                 [--refine-adapter-alignment {True,False}]
                  [--min-inserts MIN_INSERTS] [--cons-min-len CONS_MIN_LEN]
-                 [--cons-max-len CONS_MAX_LEN]
-                 [--exclude-forward {False,True}]
+                 [--cons-max-len CONS_MAX_LEN] [--keep-forward]
                  [--iter-first-muscle {1,2,3}]
                  [--iter-second-muscle {1,2,3,4}] [--threads THREADS]
                  [--version]
@@ -137,12 +136,11 @@ optional arguments:
   --adapter-list ADAPTER_LIST
                         for user-defined adapter list (comma separated list)
                         (default: None)
-  --force-overwrite {False,True}
-                        set if you want to overwrite result files (default:
+  --force-overwrite     set if you want to overwrite result files (default:
                         False)
   --tag TAG             tag to be added to the output FASTA file (default:
                         none)
-  --refine-adapter-alignment {False,True}
+  --refine-adapter-alignment {True,False}
                         choose if adapter alignment has to be refined
                         (default: True)
   --min-inserts MIN_INSERTS
@@ -154,9 +152,8 @@ optional arguments:
   --cons-max-len CONS_MAX_LEN
                         define maximal length of the consensus sequence
                         (default: 40)
-  --exclude-forward {False,True}
-                        define if reads with only "forward" inserts should get
-                        discarded (default: True)
+  --keep-forward        define if reads with only "forward" inserts are to be
+                        kept (default: False)
   --iter-first-muscle {1,2,3}
                         define how many iterations MUSCLE has to perform for
                         first MSA calculation (default: 2)
