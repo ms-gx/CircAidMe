@@ -45,8 +45,9 @@ cd CircAidMe
 python3 setup.py install
 circaidme -h
 # test the installation with a toy data set inlcuded in the package:
-mkdir /home/user/testdir # make any new and empty test directory
+mkdir /home/user/testdir # make a test directory
 circaidme-test /home/user/testdir # all tests have to pass with "OK"
+rm -R /home/user/testdir # remove test directory if tests passed
 ```
 
 Notes:
@@ -67,8 +68,9 @@ cd CircAidMe
 make
 ./circaidme-runner.py -h
 # test the installation with a toy data set inlcuded in the package:
-mkdir /home/user/testdir # make any new and empty test directory
+mkdir /home/user/testdir # make a test directory
 ./circaidme-test.py /home/user/testdir # all tests have to pass with "OK"
+rm -R /home/user/testdir # remove test directory if tests passed
 ```
 
 
