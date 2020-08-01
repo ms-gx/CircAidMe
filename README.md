@@ -89,12 +89,12 @@ __If you want to overwrite the previous run use flag `--force-overwrite`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite`
 
 __Add an additional tag to the result names by setting parameter `--tag` (for example usefull when running CircAidMe with a different parametrization):__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --tag TAG`
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --tag TAG`
 
 __Run CircAidMe multicore with parameter `--threads`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N`
 
-__Do not exlcude "forward" inserts by setting parameter `--exclude-forward` to `False`:__<br>
+__CircAidMe does not exlcude "forward" inserts by setting parameter `--exclude-forward` to `False`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --exclude-forward False`
 
 
