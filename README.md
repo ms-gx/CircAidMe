@@ -15,6 +15,7 @@ CircAidMe is free software and it is licensed under GPLv3.
     * [Build and run without installation](#build-and-run-without-installation)
     * [Install via PyPI](#install-via-pypi)
 * [Usage examples](#usage-examples)
+* [Full usage](#full-usage)
 * [Known limitations](#known-limitations)
 * [License](#license)
     
@@ -74,6 +75,77 @@ mkdir /home/user/testdir # make any new and empty test directory
 ### Install via PyPI
 
 Installation via PyPI repisitory will be added later.
+
+
+
+# Full usage
+
+```
+usage: circaidme [-h] --input-file INPUT_FILE --out-path OUT_PATH
+                 --adapter-name ADAPTER_NAME [--adapter-list ADAPTER_LIST]
+                 [--force-overwrite {False,True}] [--tag TAG]
+                 [--refine-adapter-alignment {False,True}]
+                 [--min-inserts MIN_INSERTS] [--cons-min-len CONS_MIN_LEN]
+                 [--cons-max-len CONS_MAX_LEN]
+                 [--exclude-forward {False,True}]
+                 [--iter-first-muscle {1,2,3}]
+                 [--iter-second-muscle {1,2,3,4}] [--threads THREADS]
+                 [--version]
+
+CircAidMe v0.0.0 -- Tool for the analysis of CircAID-p-seq data -- Designed
+and implemented by Genexa AG, Switzerland (genexa.ch) & Immagina BioTechnology
+S.R.L., Italy (immaginabiotech.com)
+
+required arguments:
+  --input-file INPUT_FILE
+                        FASTA/FASTQ file with CircAID-p-seq data (default:
+                        None)
+  --out-path OUT_PATH   path to store results (also used for temp files)
+                        (default: None)
+  --adapter-name ADAPTER_NAME
+                        define which adapter to be used OR "ALL" for all the
+                        available adapters OR "LIST" if you want to provide
+                        the list of adapters to be used with argument "--
+                        adapter-list". Predefined adapters are: "Luc20_DNA,
+                        ADR7391_RNA, ADR1_RNA, ADR2_RNA, ADR3_RNA,ADR4_RNA,
+                        ADR1572_RNA, ADR1859_RNA, ADR2520_RNA, ADR2858_RNA,
+                        ADR323_RNA, ADR4314_RNA, ADR4557_RNA, ADR4885_RNA,
+                        ADR5555_RNA" (default: None)
+
+optional arguments:
+  --adapter-list ADAPTER_LIST
+                        for user-defined adapter list (comma separated list)
+                        (default: None)
+  --force-overwrite {False,True}
+                        set if you want to overwrite result files (default:
+                        False)
+  --tag TAG             tag to be added to the output FASTA file (default:
+                        none)
+  --refine-adapter-alignment {False,True}
+                        choose if adapter alignment has to be refined
+                        (default: True)
+  --min-inserts MIN_INSERTS
+                        define how many inserts have to be present in order to
+                        calculate a consensus sequence (default: 2)
+  --cons-min-len CONS_MIN_LEN
+                        define minimal length of the consensus sequence
+                        (default: 15)
+  --cons-max-len CONS_MAX_LEN
+                        define maximal length of the consensus sequence
+                        (default: 40)
+  --exclude-forward {False,True}
+                        define if reads with only "forward" inserts should get
+                        discarded (default: True)
+  --iter-first-muscle {1,2,3}
+                        define how many iterations MUSCLE has to perform for
+                        first MSA calculation (default: 2)
+  --iter-second-muscle {1,2,3,4}
+                        define how many iterations MUSCLE has to perform for
+                        second MSA calculation (default: 3)
+  --threads THREADS     number of threads to be used (default: 1)
+  --version             show program's version number and exit
+```
+
 
 
 # Usage examples
