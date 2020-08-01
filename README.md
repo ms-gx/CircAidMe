@@ -82,14 +82,20 @@ Installation via PyPI repisitory will be added later.
 
 # Usage examples
 
-__Minimally parameterized run:__<br>
+__Minimally parameterized run of CircAidMe:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME`
 
-__Re-run CircAidMe (overwriting results from previous run):__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --force-overwrite`
+__Re-run CircAidMe needs flag if you want to overwrite the previous run (overwriting results from previous run):__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME **--force-overwrite**`
+
+__Add an additional tag to the result names when running CircAidMe (usefull when running the tool with different parametrizations):__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output **--tag TAG**`
 
 __Run CircAidMe multicore:__<br>
-`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N` 
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME **--threads N**`
+
+__Do not exlcude "forward" inserts:__<br>
+`circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME **--exclude-forwared False**`
 
 
 
