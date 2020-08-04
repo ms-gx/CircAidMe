@@ -1,4 +1,8 @@
-# Overview auxiliary scripts
+# Overview auxiliary material
+
+## Folder `fasta`
+
+Fasta files containing the CircAID-p-seq adapters as well as the inserts used for the publication.
 
 ## Script to generate simple overview from CircAidMe output (stats.sh & edit_dist.py)
 
