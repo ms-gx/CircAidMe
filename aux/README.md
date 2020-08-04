@@ -4,7 +4,7 @@
 
 Fasta files containing the CircAID-p-seq adapters as well as the inserts used for the publication.
 
-## Statistics script to generate simple overview from CircAidMe output (stats.sh & edit_dist.py)
+## Statistics script to generate simple overview from CircAidMe output (`stats.sh` & `edit_dist.py`)
 
 A simple script to generate basic statistics from the consensus Fasta output. It will print some basic statistics, will identify some known CircAidMe inserts and will plot the most common variants of the consensus it found.
 
@@ -15,4 +15,13 @@ How to run:
 mkdir stats #in the same directory as we are currently in bash
 /path/to/aux/stats.sh output_circaidme.fasta
 # results can be found in folder `stats`
+```
+
+## Asignment of consensus seaquence per read (`analyze_per_read.py`)
+
+This script will asign every consensus sequence of the consensus Fasta file to an insert sequence contained in the python script. If it can be found in the candidate insert sequences obviously. Otherwise it will report `none`.
+
+How to run:
+```
+python3 /path/to/analyze_per_read.py output_circaidme.fasta > results.txt
 ```
