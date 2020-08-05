@@ -15,6 +15,7 @@ CircAidMe is free software and it is licensed under GPLv3.
     * [Build and run without installation](#build-and-run-without-installation)
     * [Install via PyPI](#install-via-pypi)
 * [Usage examples](#usage-examples)
+* [Output](#output)
 * [Full usage](#full-usage)
 * [Known limitations](#known-limitations)
 * [License](#license)
@@ -51,7 +52,7 @@ rm -R /home/user/testdir # remove test directory if tests passed
 ```
 
 Notes:
-* If `python3 setup.py install` complains about permissions since you want to install it system-wide you have to run it with `sudo`.
+* If `python3 setup.py install` complains about permissions since you want to install it system-wide you have to run it with `sudo`
 * Install just for your user: `python3 setup.py install --user`
 * Install to a specific location: `python3 setup.py install --prefix=$HOME/.local`
 * Install with pip (local copy, you might have to install Python package `wheel`): `pip3 install path/to/CircAidMe`
@@ -97,6 +98,15 @@ __Run CircAidMe multicore with parameter `--threads`:__<br>
 __CircAidMe does not exlcude "forward" inserts by setting parameter `--keep-forward`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --keep-forward`
 
+
+
+# Output of a CircAidMe run
+
+CircAidMe outputs four files:
+* *basename*.fasta: Contains the consensus sequces generated from CircAID-p-seq data (one consensus sequence per Oxford Nanopore (sub-)read -- not every (sub-)read results in a consensus sequence!).
+* *basename*.csv: Contains statistics for every Oxford Nanopore (sub-)read analyzed. No matter if it results in a consensus sequence or not.
+* *basename*.log: A logfile containing the parametrization of the CircAidMe run and some basic statistics.
+* *basename*\_removed\_reads.fasta: Contains all Oxford Nanopore (sub-)reads which do not result in a consensus sequence. The reason for beeing excluded is given in the Fasta headers. This is usefull for debugging.
 
 
 # Full usage
