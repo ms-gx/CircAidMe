@@ -48,9 +48,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 	optional.add_argument('--adapter-list', dest='adapter_list',
 			type=str,
 			help='for user-defined adapter list (comma separated list)')
-	optional.add_argument('--force-overwrite', dest='force_overwrite',
-			type=str, default="False",
-			choices={"False", "True"},
+	optional.add_argument('--force-overwrite', action='store_true',
 			help='set if you want to overwrite result files')
 	optional.add_argument('--tag', dest='tag',
 			type=str, default= "none",
@@ -68,10 +66,8 @@ def main(cli_params=None): # params optional in order to enable test script to r
 	optional.add_argument('--cons-max-len', dest='cons_max_len',
 			type=int, default=parameter.consensus_max_len,
 			help='define maximal length of the consensus sequence')
-	optional.add_argument('--exclude-forward', dest='exclude_forward',
-			type=str, default="True",
-			choices={"False", "True"},
-			help='define if reads with only "forward" inserts should get discarded')
+	optional.add_argument('--keep-forward', action='store_true',
+			help='define if reads with only "forward" inserts are to be kept')
 	optional.add_argument('--iter-first-muscle', dest='iter_first_muscle',
 			type=int, default=2,
 			choices={1,2,3},
@@ -92,8 +88,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 	
 
 	refine_adapter = True if args.refine_adapter == "True" else False
-	force_overwrite = True if args.force_overwrite == "True" else False
-	exclude_forward = True if args.exclude_forward == "True" else False
+	exclude_forward = True if args.keep_forward == False else False
 
 	# handle adapter input. We have either 1) one adapter 2) all adapters or 3) a selection of adapters defined by user
 	if(args.adapter_name == "ALL"):
@@ -140,7 +135,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 
 	# clean up existing output files (if they already exist only overwrite if "force-overwrite"-flag is set):
 	if os.path.exists(args.out_path + "/" + file_id + ".fasta"): # contains the results
-		if(force_overwrite == False):
+		if(args.force_overwrite == False):
 			print("")
 			print("ERROR: Output file already exists. If you want to overwrite please set \"force-overwrite\" flag to \"True\".")
 			quit()

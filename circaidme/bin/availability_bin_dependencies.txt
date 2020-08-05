@@ -1,0 +1,3 @@
+esl-alipid: https://github.com/EddyRivasLab/easel/blob/master/miniapps/esl-alipid.c
+MUSCLE: https://www.drive5.com/muscle/
+SeqKit: https://bioinf.shenwei.me/seqkit/
