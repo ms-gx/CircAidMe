@@ -25,3 +25,17 @@ How to run:
 ```
 python3 /path/to/analyze_per_read.py output_circaidme.fasta > results.txt
 ```
+
+## Script for quantification of "pool" data of publication (`quant_insert_pool_data.py`)
+
+This script was used to quantify the results from the "pool" analysis of CircAID-p-seq publication.
+
+How to run:
+```
+#PoolA:
+python3 /path/to/quant_insert_pool.py output_pooldataA_circaidme.fasta > poolA_inserts.txt
+awk '$3==0' poolA_inserts.txt | cut -f 2 | sort | uniq -c > poolA_count.txt
+#PoolB:
+python3 /path/to/quant_insert_pool.py output_pooldataB_circaidme.fasta > poolB_inserts.txt
+awk '$3==0' poolB_inserts.txt | cut -f 2 | sort | uniq -c > poolB_count.txt
+```
