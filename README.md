@@ -17,6 +17,7 @@ CircAidMe is free software and it is licensed under GPLv3.
 * [Usage examples](#usage-examples)
 * [Output of a CircAidMe run](#output-of-a-circaidme-run)
 * [Full usage](#full-usage)
+* [How it works](#how-it-works)
 * [Known limitations](#known-limitations)
 * [License](#license)
     
@@ -173,6 +174,12 @@ optional arguments:
   --threads THREADS     number of threads to be used (default: 1)
   --version             show program's version number and exit
 ```
+
+
+
+# How it works
+
+TBD
 
 
 
