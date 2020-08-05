@@ -15,7 +15,7 @@ CircAidMe is free software and it is licensed under GPLv3.
     * [Build and run without installation](#build-and-run-without-installation)
     * [Install via PyPI](#install-via-pypi)
 * [Usage examples](#usage-examples)
-* [Output](#output)
+* [Output of a CircAidMe run](#output-of-a-circaidme-run)
 * [Full usage](#full-usage)
 * [Known limitations](#known-limitations)
 * [License](#license)
