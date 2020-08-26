@@ -352,7 +352,7 @@ class Alignments:
 			return(0)
 
 
-	def consensus(self, seq, file_id, outpath, adapter_name, exclude_forward, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, lock): # overall main function to call the consensus
+	def consensus(self, seq, file_id, outpath, adapter_name, exclude_forward, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, no_store_removed_reads, lock): # overall main function to call the consensus
 		with lock:		
 			Stat.add_data_read_stat(stats_per_read, self.read_id, "dir", self.track_inserts)
 		if(exclude_forward == True):
@@ -360,18 +360,20 @@ class Alignments:
 				with lock:
 					Stat.inc_key("only_forward_inserts", stats)
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "final_state", "only_forward_inserts")
-					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-						out_f.write(">" + self.read_id + " onlyForwardInserts" + "\n")
-						out_f.write(seq + "\n")
+					if(no_store_removed_reads == False):
+						with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+							out_f.write(">" + self.read_id + " onlyForwardInserts" + "\n")
+							out_f.write(seq + "\n")
 				self.cleanup_read(outpath)
 				return
 		if(self.track_inserts == "I_PROBLEMATIC"):
 			with lock:
 				Stat.inc_key("problematic_insert_orientation", stats)
 				Stat.add_data_read_stat(stats_per_read, self.read_id, "final_state", "problematic_insert_orientation")
-				with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-					out_f.write(">" + self.read_id + " problematicInsertOrientation" + "\n")
-					out_f.write(seq + "\n")
+				if(no_store_removed_reads == False):
+					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+						out_f.write(">" + self.read_id + " problematicInsertOrientation" + "\n")
+						out_f.write(seq + "\n")
 			self.cleanup_read(outpath)
 			return
 
@@ -390,9 +392,10 @@ class Alignments:
 				with lock:
 					Stat.inc_key("bad_MSA", stats)
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "final_state", "bad_MSA")
-					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-						out_f.write(">" + self.read_id + " badMSA" + "\n")
-						out_f.write(seq + "\n")
+					if(no_store_removed_reads == False):
+						with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+							out_f.write(">" + self.read_id + " badMSA" + "\n")
+							out_f.write(seq + "\n")
 				self.cleanup_read(outpath)
 				return
 
@@ -416,9 +419,10 @@ class Alignments:
 					Stat.inc_key("adapter_as_insert", stats)
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "len_cons", len(result_check))
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "final_state", "adapter_as_insert")
-					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-						out_f.write(">" + self.read_id + " adapterAsInsert" + "\n")
-						out_f.write(seq + "\n")
+					if(no_store_removed_reads == False):
+						with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+							out_f.write(">" + self.read_id + " adapterAsInsert" + "\n")
+							out_f.write(seq + "\n")
 				self.cleanup_read(outpath)
 				return
 			# Check if the consensus length is within the desired range:
@@ -427,9 +431,10 @@ class Alignments:
 					Stat.inc_key("consensus_size_out_of_range", stats)
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "len_cons", len(result_check))
 					Stat.add_data_read_stat(stats_per_read, self.read_id, "final_state", "consensus_out_of_range")
-					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-						out_f.write(">" + self.read_id + " ConsensusLengthOutOfRange" + "\n")
-						out_f.write(seq + "\n")
+					if(no_store_removed_reads == False):
+						with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+							out_f.write(">" + self.read_id + " ConsensusLengthOutOfRange" + "\n")
+							out_f.write(seq + "\n")
 				self.cleanup_read(outpath)
 				return
 

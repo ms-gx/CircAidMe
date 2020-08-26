@@ -174,7 +174,7 @@ def refineAlignment(seq, start_query, end_query, adapter_seq, print_adjustment):
 
 
 # This function is executed for every ONT read. Every ONT read gets handeled by one thread:
-def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude_forward, min_inserts, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, lock):
+def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude_forward, min_inserts, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, no_store_removed_reads, lock):
 	read_id = record.id
 	read_desc = " ".join((record.description).split(" ")[1:])
 
@@ -185,9 +185,10 @@ def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude
 			classes.Stat.init_read_stat(stats_per_read, read_id)
 			classes.Stat.add_data_read_stat(stats_per_read, read_id, "len_read", len(str(record.seq)))
 			classes.Stat.add_data_read_stat(stats_per_read, read_id, "final_state", "input_read_too_short")
-			with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-				out_f.write(">" + read_id + " inputReadTooShort" + "\n")
-				out_f.write(str(record.seq) + "\n")
+			if(no_store_removed_reads == False):			
+				with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+					out_f.write(">" + read_id + " inputReadTooShort" + "\n")
+					out_f.write(str(record.seq) + "\n")
 		return
 
 	(subreads, adapter_names, reason_for_split) = detect_fused_reads(str(record.seq), adapter_names) # here we detect fused reads
@@ -204,9 +205,10 @@ def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude
 			classes.Stat.init_read_stat(stats_per_read, read_id)
 			classes.Stat.add_data_read_stat(stats_per_read, read_id, "len_read", len(str(record.seq)))
 			classes.Stat.add_data_read_stat(stats_per_read, read_id, "final_state", "no_min_len_after_split")
-			with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-				out_f.write(">" + read_id + " noMinLenAfterSplit" + "\n")
-				out_f.write(str(record.seq) + "\n")
+			if(no_store_removed_reads == False):
+				with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+					out_f.write(">" + read_id + " noMinLenAfterSplit" + "\n")
+					out_f.write(str(record.seq) + "\n")
 
 	for num,subread in enumerate(subreads): # read the subreads resulting from above
 		adapter_name = adapter_names[num]
@@ -241,9 +243,10 @@ def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude
 				classes.Stat.add_data_read_stat(stats_per_read, read_id_sub, "final_state", "not_enough_adapters")
 				if(len(alignments_adapter[:-1]) == 0):
 					classes.Stat.add_data_read_stat(stats_per_read, read_id_sub, "adapter", "none")
-				with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-					out_f.write(">" + read_id_sub + " notEnoughadapters" + "\n")
-					out_f.write(subread + "\n")	
+				if(no_store_removed_reads == False):
+					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+						out_f.write(">" + read_id_sub + " notEnoughadapters" + "\n")
+						out_f.write(subread + "\n")	
 			continue
 
 		# store adapter alignments:
@@ -274,10 +277,11 @@ def analyzeRead(outpath, file_id, record, adapter_names, refine_adapter, exclude
 			with lock:
 				classes.Stat.inc_key("fewer_min_inserts_found", stats)
 				classes.Stat.add_data_read_stat(stats_per_read, read_id_sub, "final_state", "not_enough_inserts")
-				with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
-					out_f.write(">" + read_id + " notEnoughInserts" + "\n")
-					out_f.write(subread + "\n")	
+				if(no_store_removed_reads == False):
+					with open(outpath + "/" + file_id + "_removed_reads.fasta", 'a') as out_f:
+						out_f.write(">" + read_id + " notEnoughInserts" + "\n")
+						out_f.write(subread + "\n")	
 			continue
 
-		read.consensus(subread, file_id, outpath, adapter_name, exclude_forward, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, lock) # generate the consensus using the extracted data above. It will directly output to the resulting FASTA file.
+		read.consensus(subread, file_id, outpath, adapter_name, exclude_forward, cons_min_len, cons_max_len, iter_first_muscle, iter_second_muscle, stats, stats_per_read, no_store_removed_reads, lock) # generate the consensus using the extracted data above. It will directly output to the resulting FASTA file.
 
