@@ -49,7 +49,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 			type=str,
 			help='for user-defined adapter list (comma separated list)')
 	optional.add_argument('--force-overwrite', action='store_true',
-			help='set if you want to overwrite result files')
+			help='set flag if you want to overwrite result files')
 	optional.add_argument('--tag', dest='tag',
 			type=str, default= "none",
 			help='tag to be added to the output FASTA file')
@@ -59,23 +59,25 @@ def main(cli_params=None): # params optional in order to enable test script to r
 			help='choose if adapter alignment has to be refined')
 	optional.add_argument('--min-inserts', dest='min_inserts',
 			type=int, default=parameter.min_inserts,
-			help='define how many inserts have to be present in order to calculate a consensus sequence')
+			help='number of inserts which have to be present in order to calculate a consensus sequence')
 	optional.add_argument('--cons-min-len', dest='cons_min_len',
 			type=int, default=parameter.consensus_min_len,
-			help='define minimal length of the consensus sequence')
+			help='minimal length of the consensus sequence')
 	optional.add_argument('--cons-max-len', dest='cons_max_len',
 			type=int, default=parameter.consensus_max_len,
-			help='define maximal length of the consensus sequence')
+			help='maximal length of the consensus sequence')
 	optional.add_argument('--keep-forward', action='store_true',
-			help='define if reads with only "forward" inserts are to be kept')
+			help='set flag if reads with only "forward" inserts must be kept')
+	optional.add_argument('--no-store-removed-reads', action='store_true',
+			help='set flag if removed reads do NOT have to be written to a separate FASTA file')
 	optional.add_argument('--iter-first-muscle', dest='iter_first_muscle',
 			type=int, default=2,
 			choices={1,2,3},
-			help='define how many iterations MUSCLE has to perform for first MSA calculation')
+			help='number of iterations MUSCLE has to perform for first MSA calculation')
 	optional.add_argument('--iter-second-muscle', dest='iter_second_muscle',
 			type=int, default=3,
 			choices={1,2,3,4},
-			help='define how many iterations MUSCLE has to perform for second MSA calculation')
+			help='number of iterations MUSCLE has to perform for second MSA calculation')
 	optional.add_argument('--threads', dest='threads',
 			type=int, default=1,
 			help='number of threads to be used')
@@ -115,7 +117,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 		print("ERROR: Provided output path does not exist. Please provide a valid output path. Will exit now.")
 		quit()
 
-	# little sanity check to see if we have fastx. We do just check this via file extension and not parsing the file:
+	# little sanity check to see if we have FASTA/FASTQ. We do just check this via file extension and not via parsing the file:
 	file_ending = pathlib.Path(args.input_file).suffix[1:]
 	if( not ( file_ending in ["fasta","fastq"] ) ):
 		print("")
@@ -198,7 +200,7 @@ def main(cli_params=None): # params optional in order to enable test script to r
 		while(waiting):
 			if( len(procs) < int(args.threads) ): # if we have open slots, start new processes
 				# This starts the actual calculation -- one process per read:
-				p = multiprocessing.Process(target=consensus.analyzeRead, args=(args.out_path, file_id, record, adapter_names, refine_adapter, exclude_forward, args.min_inserts, args.cons_min_len, args.cons_max_len, args.iter_first_muscle, args.iter_second_muscle, stats, stats_per_read, lock))
+				p = multiprocessing.Process(target=consensus.analyzeRead, args=(args.out_path, file_id, record, adapter_names, refine_adapter, exclude_forward, args.min_inserts, args.cons_min_len, args.cons_max_len, args.iter_first_muscle, args.iter_second_muscle, stats, stats_per_read, args.no_store_removed_reads ,lock))
 				procs.append(p) # append this process to the list holding all currently running processes
 				p.start()
 				waiting = False
