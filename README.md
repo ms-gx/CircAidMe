@@ -119,11 +119,11 @@ usage: circaidme [-h] --input-file INPUT_FILE --out-path OUT_PATH
                  [--refine-adapter-alignment {True,False}]
                  [--min-inserts MIN_INSERTS] [--cons-min-len CONS_MIN_LEN]
                  [--cons-max-len CONS_MAX_LEN] [--keep-forward]
-                 [--iter-first-muscle {1,2,3}]
+                 [--no-store-removed-reads] [--iter-first-muscle {1,2,3}]
                  [--iter-second-muscle {1,2,3,4}] [--threads THREADS]
                  [--version]
 
-CircAidMe v0.0.0 -- Tool for the analysis of CircAID-p-seq data -- Designed
+CircAidMe v0.1.0 -- Tool for the analysis of CircAID-p-seq data -- Designed
 and implemented by Genexa AG, Switzerland (genexa.ch) & Immagina BioTechnology
 S.R.L., Italy (immaginabiotech.com)
 
@@ -147,32 +147,34 @@ optional arguments:
   --adapter-list ADAPTER_LIST
                         for user-defined adapter list (comma separated list)
                         (default: None)
-  --force-overwrite     set if you want to overwrite result files (default:
-                        False)
+  --force-overwrite     set flag if you want to overwrite result files
+                        (default: False)
   --tag TAG             tag to be added to the output FASTA file (default:
                         none)
   --refine-adapter-alignment {True,False}
                         choose if adapter alignment has to be refined
                         (default: True)
   --min-inserts MIN_INSERTS
-                        define how many inserts have to be present in order to
+                        number of inserts which have to be present in order to
                         calculate a consensus sequence (default: 2)
   --cons-min-len CONS_MIN_LEN
-                        define minimal length of the consensus sequence
-                        (default: 15)
+                        minimal length of the consensus sequence (default: 15)
   --cons-max-len CONS_MAX_LEN
-                        define maximal length of the consensus sequence
-                        (default: 40)
-  --keep-forward        set if reads with only "forward" inserts are to be
+                        maximal length of the consensus sequence (default: 40)
+  --keep-forward        set flag if reads with only "forward" inserts must be
                         kept (default: False)
+  --no-store-removed-reads
+                        set flag if removed reads do NOT have to be written to
+                        a separate FASTA file (default: False)
   --iter-first-muscle {1,2,3}
-                        define how many iterations MUSCLE has to perform for
-                        first MSA calculation (default: 2)
+                        number of iterations MUSCLE has to perform for first
+                        MSA calculation (default: 2)
   --iter-second-muscle {1,2,3,4}
-                        define how many iterations MUSCLE has to perform for
-                        second MSA calculation (default: 3)
+                        number of iterations MUSCLE has to perform for second
+                        MSA calculation (default: 3)
   --threads THREADS     number of threads to be used (default: 1)
   --version             show program's version number and exit
+
 ```
 
 
