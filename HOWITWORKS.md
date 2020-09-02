@@ -22,3 +22,13 @@ The detection of ONT adapters as well as detection of CircAID-p-seq adapters bot
 
 ![Split reads](/aux/doc/split_reads.png)
 
+In rare cases there is more than one "fused read" event and as a result the fused read gets split up into more than one subread.
+
+## Step 2: Detect CircAID-p-seq adapters in read
+
+The split or non-split reads are now checked for CircAID-p-seq adapters using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/). This is the first step which will execute multicore. All the steps up to Step 7 (Generate a consensus sequence from the second MSA) are exectued on one process per read. In order for adapter detetection to be executed the reads need a mininmal length as defined in the parameter-file of CircAidMe. If they are too short they get sorted out.
+
+Inserts flanked by two CircAID-p-seq adapters are extracted:
+
+
+
