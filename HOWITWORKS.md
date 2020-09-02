@@ -25,11 +25,11 @@ In rare cases there is more than one "fused read" event and as a result the fuse
 
 ## Step 2: Detect CircAID-p-seq adapters in read & extract inserts
 
-The split or non-split reads are now checked for CircAID-p-seq adapters using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/). The CircAID-p-seq adapter which has to be applied is set with parameter `--adapter-name` (required paramterer, predefined adapters see main README). In order for adapter detetection to be executed a read has to be of minimal length as defined in the parameter file of CircAidMe. If a read is too short it gets sorted out.
+The split or non-split reads are now checked for CircAID-p-seq adapters using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/). The CircAID-p-seq adapter which has to be applied is set with parameter `--adapter-name` (required parameter, predefined adapters see main README). In order for adapter detection to be executed a read has to be of minimal length as defined in the parameter file of CircAidMe. If a read is too short it gets sorted out.
 
 Mapping of the adapter to the read gets refined by adjusting the start and end of the mapping. If you suspect this to be problematic for your case you can switch this of by setting parameter `--refine-adapter-alignment` to `False`.
 
-This is the first step which will execute multicore. All the steps up to Step 6 (Generate a consensus sequence from the second MSA) are exectued on one process per read.
+This is the first step which will execute multi-core. All the steps up to Step 6 (Generate a consensus sequence from the second MSA) are executed on one process per read.
 
 Inserts flanked by two CircAID-p-seq adapters are extracted:
 
@@ -43,7 +43,7 @@ It can happen that a read has an insert orientation other than the three standar
 
 Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the extracted inserts is calculated. However, this step is only exectued if at least two (or more, adjustable by parameter `--min-insert`) inserts are found in the previous step.
 
-The number of iterations for the MUSCLE run can be defined via parameter `--iter-first-muscle` (default: 2, range: 1-3). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+The number of iterations for the MUSCLE run can be defined via parameter `--iter-first-muscle` (default: 2, range: 1-3). However, in most cases this is an insensitive parameter and it does not change much in terms of run-time and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to increase the number of MUSCLE iterations.
 
 ## Step 4: Remove inserts with low quality from the analysis
 
@@ -68,7 +68,7 @@ Details can be found in function `filter_good_align()` in file `classes.py`. To 
 Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the high quality inserts is calculated.
 
 It applies the same as for the first MSA:
-The number of iterations for the second MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 3, range: 1-4). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+The number of iterations for the second MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 3, range: 1-4). However, in most cases this is an insensitive parameter and it does not change much in terms of run-time and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to increase the number of MUSCLE iterations.
 
 ## Step 6: Generate a consensus sequence from the second MSA
 
@@ -78,6 +78,6 @@ The consensus sequences are stored into *basename*.fasta.
 
 ## Step 7: Compile statistics about the CircAidMe run.
 
-This last step compiles the statistics information and stores them into *basename*.log (overall statistics and papertrail) and *basename*.csv (statistics on a per-read level).
+This last step compiles the statistics information and stores them into *basename*.log (overall statistics and paper-trail) and *basename*.csv (statistics on a per-read level).
 
 Reads for which no consensus sequence can be generated are stored in *basename*\_removed_reads.fasta for debugging puporse. In case you do not want to generate this file please set parameter `--no-store-removed-reads`.
