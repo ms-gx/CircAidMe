@@ -43,6 +43,30 @@ It can happen that a read has an insert orientation other than the three standar
 
 Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the extracted inserts is calculated. However, this step is only exectued if at least two (or more, adjustable by parameter `--min-insert`) inserts are found in the previous step.
 
-The number of iterations for the MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 2, range: 1-4). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+The number of iterations for the MUSCLE run can be defined via parameter `--iter-first-muscle` (default: 2, range: 1-3). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
 
-## Step 4: Remove inserts from the previous MSA which have a low quality
+## Step 4: Remove inserts with low quality from the analysis
+
+Inserts which have a low identity to the overall MSA from the previous step or do not cover the majority of the MSA length are discarded. The thresholds for this selection process are hard-coded currently.
+
+The following figure shows the basic idea of this step, where `Insert 3` has a bad alignment quality and `Insert 6` only covers part of the MSA:
+
+```
+Insert1  A T G T C A G C T T T G C T T A A A G T C G A T
+Insert2  A T G T C A G C T T T G C T T A A A G T C G A T
+Insert3  C C G   C A C C T A A G C T T T T A G A C T T T
+Insert4  A T G T C A G C T T T G C A T A A A G T C G A T
+Insert5  A T G A C A G C T T T G C T T A A A G T C G A T
+Insert6      T G T C A G C T T T G C T T A A A
+Insert7  A T G T C A G C T T T G C T T A A A G T C G A T
+```
+## Step 5: Perform a second MSA with remaining high quality insert
+
+Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the high quality inserts is calculated.
+
+It applies the same as for the first MSA:
+The number of iterations for the second MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 3, range: 1-4). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+
+## Step 6: Generate a consensus sequence from the second MSA
+
+Via a 
