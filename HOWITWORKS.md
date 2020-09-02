@@ -61,7 +61,7 @@ Insert6      T G T C A G C T T T G C T T A A A
 Insert7  A T G T C A G C T T T G C T T A A A G T C G A T
 ```
 
-Details can be found in function `filter_good_align()` in file `classes.py`. To detect inserts with low alignment quality we use the tool [esl-alipid](https://github.com/EddyRivasLab/easel/blob/master/miniapps/esl-alipid.c).
+Details can be found in function `filter_good_align()` in file `classes.py`. To detect inserts of low alignment quality we use the tool [esl-alipid](https://github.com/EddyRivasLab/easel/blob/master/miniapps/esl-alipid.c).
 
 ## Step 5: Perform a second MSA with remaining high quality inserts
 
