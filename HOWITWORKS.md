@@ -10,6 +10,7 @@ A CircAidMe run can be divided into the following high-level steps:
 7. Generate a consensus sequence from the second MSA.
 8. Compile statistics about the CircAidMe run.
 
+
 ## Step 1: Split fused reads
 
 CircAID-p-seq is based on Oxford Nanopore Technologies (ONT)-sequencing. With ONT-sequencing it can occur that the signal processing for the ONT data does not detect when a new DNA molecule goes through the pore. Meaning that two DNA molecules (reads) get fused into one read by the signal processing. We call this a "fused read".
@@ -23,6 +24,7 @@ The detection of ONT adapters as well as detection of CircAID-p-seq adapters bot
 ![Split reads](/aux/doc/split_reads.png)
 
 In rare cases there is more than one "fused read" event and as a result the fused read gets split up into more than one subread.
+
 
 ## Step 2: Detect CircAID-p-seq adapters in read
 
