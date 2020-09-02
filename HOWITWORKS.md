@@ -37,6 +37,8 @@ Inserts flanked by two CircAID-p-seq adapters are extracted:
 
 ## Step 3: Perform first multiple sequence alignment (MSA) with extracted inserts
 
-Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the extracted inserts is calculated. However, this step is only exectued if at least two (or more, adjustable by parameter `--min-insert`) inserts are found in the last step.
+Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the extracted inserts is calculated. However, this step is only exectued if at least two (or more, adjustable by parameter `--min-insert`) inserts are found in the previous step.
 
-The number of iterations for the MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 2). However, mostly this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+The number of iterations for the MUSCLE run can be defined via parameter `--iter-second-muscle` (default: 2, range: 1-4). However, in most cases this is an insensitive parameter and it does not change much in terms of runtime and accuracy. However, if your run takes too long you can reduce the number of iterations for this step. On the contrary, if you want a higher accuracy you can try to incrase the number of MUSCLE iterations.
+
+## Step 4: Remove inserts from the previous MSA which have a low quality
