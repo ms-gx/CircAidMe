@@ -20,5 +20,5 @@ We try to address this problem with two approaches:
 
 The detection of ONT adapters as well as detection of CircAID-p-seq adapters both get performed using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/).
 
-![Split reads](/images/split_reads.png)
+![Split reads](/aux/doc/split_reads.png)
 
