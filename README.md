@@ -179,9 +179,9 @@ optional arguments:
 
 
 
-# How it works
+# How CircAidMe works
 
-TBD
+A in-depth description of CircAidMe can be found [here](HOWITWORKS.md).
 
 
 
