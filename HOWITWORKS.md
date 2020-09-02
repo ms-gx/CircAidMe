@@ -4,8 +4,18 @@ A CircAidMe run can be divided into the following high-level steps:
 1. Check for every ONT read if it is a "fused read". Split any fused reads if detected.
 2. Detect CircAID-p-seq adapters sequences in the (split) reads.
 3. Extract inserts flanked by CircAID-p-seq adapters.
-4. Perform first multiple sequenc alignment (MSA) with extracted inserts from last step.
+4. Perform first multiple sequence alignment (MSA) with extracted inserts from last step.
 5. Remove inserts from the previous MSA which have a low quality (based on overal identity to MSA and coverage of the MSA).
 6. Perform a second MSA with remaining high quality inserts.
 7. Generate a consensus sequence from the second MSA.
 8. Compile statistics about the CircAidMe run.
+
+## Step 1: Split fused reads
+
+CircAID-p-seq is based on Oxford Nanopore Technologies (ONT)-sequencing. With ONT-sequencing it can occur that the signal processing for the ONT data does not detect when a new molecule goes through the pore. Meaning that two molecules (reads) get fused into one read by the signal processing. We call this a "fused read".
+
+We try to address this problem with two approaches:
+1. Detect ONT adapters within the read
+2. Find a pattern of CircAID-p-seq adapters within the read which point to a fused read
+
+The detection of ONT adapters as well as detection of CircAID-p-seq adapters both get performed using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/).
