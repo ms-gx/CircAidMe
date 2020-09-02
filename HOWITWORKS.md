@@ -60,6 +60,9 @@ Insert5  A T G A C A G C T T T G C T T A A A G T C G A T
 Insert6      T G T C A G C T T T G C T T A A A
 Insert7  A T G T C A G C T T T G C T T A A A G T C G A T
 ```
+
+Details can be found in function `filter_good_align()` in file `classes.py`. To detect inserts with low alignment quality we use the tool [esl-alipid](https://github.com/EddyRivasLab/easel/blob/master/miniapps/esl-alipid.c).
+
 ## Step 5: Perform a second MSA with remaining high quality inserts
 
 Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the high quality inserts is calculated.
@@ -69,7 +72,7 @@ The number of iterations for the second MUSCLE run can be defined via parameter 
 
 ## Step 6: Generate a consensus sequence from the second MSA
 
-A custom consensus algorithm (function `cons()` in `classes.py`) is applied to the second MSA. Consensus sequences shorter than `--cons-min-len` (default: 15) and `--cons-max-len` (default: 40) are discarded.
+A custom consensus algorithm (function `cons()` in `classes.py`) is applied to the second MSA. Consensus sequences shorter than `--cons-min-len` (default: 15) and longer than `--cons-max-len` (default: 40) are discarded.
 
 The consensus sequences are stored into *basename*.fasta.
 
