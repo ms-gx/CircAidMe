@@ -25,15 +25,19 @@ In rare cases there is more than one "fused read" event and as a result the fuse
 
 ## Step 2: Detect CircAID-p-seq adapters in read & extract inserts
 
-The split or non-split reads are now checked for CircAID-p-seq adapters using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/).
+The split or non-split reads are now checked for CircAID-p-seq adapters using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/). The CircAID-p-seq adapter which has to be applied is set with parameter `--adapter-name` (required paramterer, predefined adapters see main README). In order for adapter detetection to be executed a read has to be of minimal length as defined in the parameter file of CircAidMe. If a read is too short it gets sorted out.
+
+Mapping of the adapter to the read gets refined by adjusting the start and end of the mapping. If you suspect this to be problematic for your case you can switch this of by setting parameter `--refine-adapter-alignment` to `False`.
 
 This is the first step which will execute multicore. All the steps up to Step 6 (Generate a consensus sequence from the second MSA) are exectued on one process per read.
-
-In order for adapter detetection to be executed a read needs a mininmal length as defined in the parameter-file of CircAidMe. If a read is too short it gets sorted out.
 
 Inserts flanked by two CircAID-p-seq adapters are extracted:
 
 ![Extract inserts](/aux/doc/extract_insert.png)
+
+There are three scenarios of insert orientation that can occur: 1) forward- and reverse-inserts 2) only reverse-inserts and 3) only forward-inserts. Reads with only forward inserts get discarded by default (see publication for more information on this). If you want to keep the reads with only forward-inserts you have to set parameter ` --keep-forward`.
+
+It can happen that a read has an insert orientation other than the three standard-cases above (for example forward-reverse-forward). A read with a non-standard orientation is excluded from the analysis.
 
 ## Step 3: Perform first multiple sequence alignment (MSA) with extracted inserts
 
