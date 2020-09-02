@@ -60,7 +60,7 @@ Insert5  A T G A C A G C T T T G C T T A A A G T C G A T
 Insert6      T G T C A G C T T T G C T T A A A
 Insert7  A T G T C A G C T T T G C T T A A A G T C G A T
 ```
-## Step 5: Perform a second MSA with remaining high quality insert
+## Step 5: Perform a second MSA with remaining high quality inserts
 
 Using [MUSCLE](https://www.drive5.com/muscle/) an MSA of the high quality inserts is calculated.
 
@@ -69,4 +69,12 @@ The number of iterations for the second MUSCLE run can be defined via parameter 
 
 ## Step 6: Generate a consensus sequence from the second MSA
 
-Via a 
+A custom consensus algorithm (function `cons()` in `classes.py`) is applied to the second MSA. Consensus sequences shorter than `--cons-min-len` (default: 15) and `--cons-max-len` (default: 40) are discarded.
+
+The consensus sequences are stored into *basename*.fasta.
+
+## Step 7: Compile statistics about the CircAidMe run.
+
+This last step compiles the statistics information and stores them into *basename*.log (overall statistics and papertrail) and *basename*.csv (statistics on a per-read level).
+
+Reads for which no consensus sequence can be generated are stored in *basename*\_removed_reads.fasta for debugging puporse. In case you do not want to generate this file please set parameter `--no-store-removed-reads`.
