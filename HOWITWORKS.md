@@ -14,11 +14,11 @@ A CircAidMe run can be divided into the following high-level steps:
 
 CircAID-p-seq is based on Oxford Nanopore Technologies (ONT)-sequencing. With ONT-sequencing it can occur that the signal processing for the ONT data does not detect when a new molecule goes through the pore. Meaning that two molecules (reads) get fused into one read by the signal processing. We call this a "fused read".
 
-We try to address this problem with two approaches:
+We address this problem with two approaches:
 1. Detect ONT adapters within the read
 2. Find a pattern of CircAID-p-seq adapters within the read which point to a fused read
 
-The detection of ONT adapters as well as detection of CircAID-p-seq adapters both get performed using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/).
+The detection of ONT adapters as well as detection of CircAID-p-seq adapters both get performed using [SeqAn v2.4](https://www.seqan.de/seqan-2-4-released/). If one or both of the two cases are encountered, a fused read is split at an appropriate position:
 
 ![Split reads](/aux/doc/split_reads.png)
 
