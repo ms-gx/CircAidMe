@@ -78,7 +78,7 @@ rm -R /home/user/testdir # remove test directory if tests passed
 
 ### Install via PyPI
 
-Installation via PyPI repisitory will be added later.
+Installation via PyPI repository will be added later.
 
 
 
@@ -93,7 +93,7 @@ __If you want to overwrite the previous run use flag `--force-overwrite`:__<br>
 __Add an additional tag to the result names by setting parameter `--tag` (for example usefull when running CircAidMe with a different parametrization):__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --tag TAG`
 
-__Run CircAidMe multicore with parameter `--threads`:__<br>
+__Run CircAidMe multi-core with parameter `--threads`:__<br>
 `circaidme --input-file input_reads.fastq --out-path path/to/output --adapter-name ADAPTER_NAME --threads N`
 
 __CircAidMe does not exlcude "forward" inserts by setting parameter `--keep-forward`:__<br>
@@ -104,10 +104,10 @@ __CircAidMe does not exlcude "forward" inserts by setting parameter `--keep-forw
 # Output of a CircAidMe run
 
 CircAidMe outputs four files:
-* *basename*.fasta: Contains the consensus sequces generated from CircAID-p-seq data (one consensus sequence per Oxford Nanopore (sub-)read -- not every (sub-)read results in a consensus sequence!).
+* *basename*.fasta: Contains the consensus sequences generated from CircAID-p-seq data (one consensus sequence per Oxford Nanopore (sub-)read -- not every (sub-)read results in a consensus sequence!).
 * *basename*.csv: Contains statistics for every Oxford Nanopore (sub-)read analyzed. No matter if it results in a consensus sequence or not.
-* *basename*.log: A logfile containing the parametrization of the CircAidMe run and some basic statistics.
-* *basename*\_removed\_reads.fasta: Contains all Oxford Nanopore (sub-)reads which do not result in a consensus sequence. The reason for beeing excluded is given in the Fasta headers. This is usefull for debugging.
+* *basename*.log: A logfile containing the parameterization of the CircAidMe run and some basic statistics.
+* *basename*\_removed\_reads.fasta: Contains all Oxford Nanopore (sub-)reads which do not result in a consensus sequence. The reason for getting excluded is given in the Fasta headers. This is useful for debugging.
 
 
 # Full usage
@@ -187,7 +187,7 @@ A in-depth description of CircAidMe can be found [here](HOWITWORKS.md).
 
 # Known limitations
 * CircAidMe at this stage does not support Gzipped input or output (`*.fastq.gz`or `*.fasta.gz`). Might be addressed later if needed.
-* CircAidMe has multicore support (parameter `--threads`). However, the speed does not scale perfectly linear. Can be improved at a later stage.
+* CircAidMe has multi-core support (parameter `--threads`). However, the speed does not scale perfectly linear. Can be improved at a later stage.
 
 
 
