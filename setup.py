@@ -113,7 +113,7 @@ setup(
 	install_requires=[
 		'pandas',
 		'regex',
-		'biopython',
+		'biopython<=1.77,>=1.73',
 	],
 	package_data={'circaidme': ['lib/*.so','bin/*','test/*']},
 	entry_points={"console_scripts": ['circaidme = circaidme.circaidme:main','circaidme-test = circaidme.test:main']},
